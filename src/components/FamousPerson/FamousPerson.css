@@ -1,0 +1,5 @@
+.awful-text {
+    background: linear-gradient(-90deg, #2BC700, #FAB83D);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
