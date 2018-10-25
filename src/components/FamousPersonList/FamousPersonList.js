@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './FamousPerson.css';
-import FamousPersonForm from '../FamousPersonForm/FamousPersonForm';
 
 class FamousPerson extends Component {
 
@@ -9,10 +8,11 @@ class FamousPerson extends Component {
         name: '',
         role: ''
         },
-        people: [],
+        people: []
     }
 
-    handleChangeFor = (propertyName) => (event) => {
+    handleChangeFor = (propertyName) => {
+        return (event) => {
             this.setState( {
                 famousPerson: {
                 ...this.state.famousPerson,
@@ -20,17 +20,18 @@ class FamousPerson extends Component {
                 }
             })
         }
+    }
 
     logNameAndRole = (e) => {
         e.preventDefault();
-        // let newFamousPerson = this.state.famousPerson;
-        // console.log(`The famous person is:`, newFamousPerson);
+        let newFamousPerson = this.state.famousPerson;
+        console.log(`The famous person is:`, newFamousPerson);
         this.setState({
+            people: [...this.state.people, this.state.famousPerson],
             famousPerson: {
             name: '',
-            role: '',
-            },
-            people: [...this.state.people, this.state.famousPerson],
+            role: ''
+            }
         })
     }
 
@@ -47,9 +48,16 @@ class FamousPerson extends Component {
     })
     return (
       <div>
-          <FamousPersonForm logNameAndRole={this.logNameAndRole}
-                            handleChangeFor={this.handleChangeFor}
-                            famousPerson={this.state.famousPerson}/>
+          <section>
+            <p className="blackout">you are !famous you are !famous you are !famous you are !famous you are !famous you are !famous </p>
+        <form onSubmit={ this.logNameAndRole }>
+            <input onChange={ this.handleChangeFor('name') } placeholder="'Famous Person's' Name" value={this.state.famousPerson.name}/>
+            <input onChange={ this.handleChangeFor('role') } placeholder="What role are they 'famous' for?" value={this.state.famousPerson.role}/>
+            <h2 className="awful-text">{this.state.famousPerson.name} is famous for {this.state.famousPerson.role}</h2>
+            <input type="submit" value="Add Famous Person" />
+            {/* <p onClick={this.logNameAndRole}>you are not famous</p> */}
+        </form>
+        </section>
       <section>
           <h2 className="awful-text">All of the Famous People</h2>
           <pre>

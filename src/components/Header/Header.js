@@ -6,7 +6,7 @@ class Header extends Component {
     return (
       <div className="App">
         <header className="App-header">
-        <h2>Famous People &#x1F612;</h2>
+        <h2>Famous People <span role="img" aria-label="smug person">&#x1F612;</span></h2>
         </header>
       </div>
     );
